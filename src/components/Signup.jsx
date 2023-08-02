@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './Signup.css'; // Import your CSS file
 import { toast } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
     mobile: '',
@@ -27,6 +28,7 @@ const Signup = () => {
         let data = JSON.stringify(arr);
         localStorage.setItem("db",data);
         toast.success("Successfully Registered!");
+        navigate('login',{replace:true})
     }
     else{
         let dbData = localStorage.getItem("db");
@@ -45,6 +47,7 @@ const Signup = () => {
             let data = JSON.stringify(parsedData);
             localStorage.setItem("db",data);
             toast.success("Successfully Registered!");
+            navigate('login',{replace:true})
         }
     }
   };
